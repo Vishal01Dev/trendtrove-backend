@@ -89,6 +89,7 @@ const removeFromCart = asyncHandler(async (req, res) => {
     return res
       .status(200)
       .json(new ApiResponse(200, {}, "Item has been removed from your cart"));
+      
   } catch (error) {
     throw new ApiError(
       500,
@@ -259,7 +260,7 @@ const getCartItems = asyncHandler(async (req, res) => {
     }
 
     const obj = {
-      cartItems: cartItems[0],
+      cartItems: cartItems[0] ? cartItems[0] : {},
       cartTotal: Number(carTotal.toFixed(2)),
     };
 
